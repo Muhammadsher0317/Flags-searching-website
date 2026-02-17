@@ -10,7 +10,8 @@ getapi(api)
 
 let mode = localStorage.getItem("mode")?localStorage.getItem("mode")
 :"Light"
-
+const selectingoption=document.querySelector(".selectingoption")
+const option=document.querySelectorAll(".option")
 const body=document.querySelector("body");
 const maincards=document.querySelector(".maincards");
 const switchbackround=document.querySelector(".switchbackround")
@@ -58,5 +59,24 @@ let value = e.target.value.toLowerCase().trim()
 let filtered=allcountrty.filter((country)=>{
     return country.name.common.toLowerCase().includes(value)
 })
+writedata(filtered)
+})
+
+selectingoption.addEventListener("change",()=>{
+    let filtered=[] 
+    let selected=selectingoption.value
+    if(selected==="all"){
+      filtered=allcountrty 
+    }else if(selected==="Africa"){
+        filtered=allcountrty.filter(country=>country.region==="Africa")
+    }else if(selected==="Americas"){
+        filtered=allcountrty.filter(country=>country.region==="Americas")
+    }else if(selected==="Asia"){
+        filtered=allcountrty.filter(country=>country.region==="Asia")
+    }else if(selected==="Europe"){
+        filtered=allcountrty.filter(country=>country.region==="Europe")
+    }else if(selected==="Oceania"){
+        filtered=allcountrty.filter(country=>country.region==="Oceania")
+    }
 writedata(filtered)
 })
